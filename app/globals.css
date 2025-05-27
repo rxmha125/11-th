@@ -1,0 +1,214 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 235 20% 21%; /* Dark Slate Gray */
+    --foreground: 276 84% 95%; /* Light Lavender/White */
+
+    --card: 235 20% 25%; /* Slightly lighter dark slate gray for cards */
+    --card-foreground: 276 84% 95%;
+
+    --popover: 235 20% 23%;
+    --popover-foreground: 276 84% 95%;
+
+    --primary: 285 24% 50%; /* Deep Plum */
+    --primary-foreground: 276 84% 95%;
+
+    --secondary: 285 20% 40%; /* A darker plum or related color */
+    --secondary-foreground: 276 84% 95%;
+
+    --muted: 235 15% 35%;
+    --muted-foreground: 276 50% 75%;
+
+    --accent: 276 84% 84%; /* Soft Lavender */
+    --accent-foreground: 235 20% 15%; /* Dark for contrast on lavender */
+
+    --destructive: 0 72% 51%; /* Adjusted for better visibility on dark theme */
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 235 15% 30%;
+    --input: 235 15% 30%;
+    --ring: 276 84% 84%; /* Soft Lavender for ring */
+
+    --radius: 0.75rem;
+
+    --font-body-serif: "Playfair Display", var(--font-geist-sans);
+    --font-code-mono: "Fira Code", var(--font-geist-mono);
+
+    --chart-1: var(--primary);
+    --chart-2: var(--accent);
+    --chart-3: var(--secondary);
+    --chart-4: 276 50% 75%;
+    --chart-5: 285 15% 60%;
+
+    /* Sidebar specific vars - adapt to dark theme */
+    --sidebar-background: 235 20% 18%;
+    --sidebar-foreground: 276 80% 90%;
+    --sidebar-primary: var(--accent);
+    --sidebar-primary-foreground: var(--accent-foreground);
+    --sidebar-accent: 235 20% 25%;
+    --sidebar-accent-foreground: var(--foreground);
+    --sidebar-border: 235 15% 28%;
+    --sidebar-ring: var(--ring);
+  }
+
+  .dark {
+    --background: 235 20% 21%;
+    --foreground: 276 84% 95%;
+    --card: 235 20% 25%;
+    --card-foreground: 276 84% 95%;
+    --popover: 235 20% 23%;
+    --popover-foreground: 276 84% 95%;
+    --primary: 285 24% 50%;
+    --primary-foreground: 276 84% 95%;
+    --secondary: 285 20% 40%;
+    --secondary-foreground: 276 84% 95%;
+    --muted: 235 15% 35%;
+    --muted-foreground: 276 50% 75%;
+    --accent: 276 84% 84%;
+    --accent-foreground: 235 20% 15%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 235 15% 30%;
+    --input: 235 15% 30%;
+    --ring: 276 84% 84%;
+    --chart-1: var(--primary);
+    --chart-2: var(--accent);
+    --chart-3: var(--secondary);
+    --chart-4: 276 50% 75%;
+    --chart-5: 285 15% 60%;
+    --sidebar-background: 235 20% 18%;
+    --sidebar-foreground: 276 80% 90%;
+    --sidebar-primary: var(--accent);
+    --sidebar-primary-foreground: var(--accent-foreground);
+    --sidebar-accent: 235 20% 25%;
+    --sidebar-accent-foreground: var(--foreground);
+    --sidebar-border: 235 15% 28%;
+    --sidebar-ring: var(--ring);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body-serif);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: none; /* Hide default system cursor */
+  }
+
+  /* Ensure interactive elements also hide the default cursor */
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea,
+  label[htmlFor] {
+    cursor: none;
+  }
+  /* Special case for canvas if it needs its own cursor like 'crosshair' */
+  /* canvas.your-drawing-canvas-class { cursor: crosshair; } */
+
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background) / 0.5);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.7);
+    border-radius: var(--radius);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-body-serif);
+  }
+
+  code, kbd, samp, pre {
+    font-family: var(--font-code-mono);
+  }
+}
+
+@layer utilities {
+  .glassmorphism {
+    @apply bg-card/70 backdrop-blur-md border border-primary/30;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .animate-fade-in-delay-1 { animation: fadeIn 1s ease-out 0.5s forwards; opacity: 0; }
+  .animate-fade-in-delay-2 { animation: fadeIn 1s ease-out 1s forwards; opacity: 0; }
+  .animate-fade-in-delay-3 { animation: fadeIn 1s ease-out 1.5s forwards; opacity: 0; }
+
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-16px); } /* Increased displacement */
+    100% { transform: translateY(0px); }
+  }
+
+  .animate-float { 
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0%, 100% { text-shadow: 0 0 5px hsl(var(--accent)), 0 0 10px hsl(var(--accent) / 0.7); }
+    50% { text-shadow: 0 0 10px hsl(var(--accent)), 0 0 20px hsl(var(--accent) / 0.7); }
+  }
+  .text-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0% { transform: translate(0px, 0px) rotate(0deg); opacity: 0.6; }
+    12.5% { transform: translate(calc(20vw + 30px), calc(-15vh - 20px)) rotate(-8deg); opacity: 0.8; }
+    25% { transform: translate(calc(-15vw - 25px), calc(25vh + 10px)) rotate(5deg); opacity: 0.5; }
+    37.5% { transform: translate(calc(10vw + 40px), calc(30vh - 15px)) rotate(12deg); opacity: 0.9; }
+    50% { transform: translate(calc(-25vw - 10px), calc(-20vh + 30px)) rotate(-3deg); opacity: 0.7; }
+    62.5% { transform: translate(calc(30vw + 20px), calc(10vh - 25px)) rotate(10deg); opacity: 0.4; }
+    75% { transform: translate(calc(-20vw - 35px), calc(-25vh + 5px)) rotate(-15deg); opacity: 0.8; }
+    87.5% { transform: translate(calc(15vw + 15px), calc(20vh - 30px)) rotate(7deg); opacity: 0.6; }
+    100% { transform: translate(0px, 0px) rotate(0deg); opacity: 0.6; }
+  }
+
+  @keyframes pulse { 
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+
+  /* Added explode keyframes for the Surprise Universe Unlock button */
+  @keyframes explode {
+    0% {
+      transform: scale(0.5) translate(0, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(3) translate(var(--tx, 0px), var(--ty, 0px)); /* Custom properties for random direction */
+      opacity: 0;
+    }
+  }
+}
