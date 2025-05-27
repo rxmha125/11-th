@@ -19,7 +19,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'Ethereal Embrace',
+  title: '11thVerse',
   description: 'A love story in motion, coded from the heart.',
 };
 
