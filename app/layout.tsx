@@ -19,7 +19,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: '11thVerse',
+  title: 'Rx ❤️ Suha | 11 Month Anniversary',
   description: 'A love story in motion, coded from the heart.',
 };
 
